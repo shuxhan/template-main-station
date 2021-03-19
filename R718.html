@@ -5,8 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>R817</title>
-        <!-- <link rel="stylesheet" href="./css/style.css">
-        <link rel="stylesheet" href="./css/animate.css"> -->
         <link rel="stylesheet" href="./css/normalize.css">
     </head>
     <body>
@@ -25,18 +23,18 @@
                     </div>
 
                 </div>
-                <!-- <div class="btns-right-b">
+                <div class="btns-right-b">
                     <div class="theme-color-list-b clearfix">
-                                                    <span class="color-square" style="background-color:#EEB92A;" onclick='handle(this, "0", "bxr0dr")'></span>
-                                                    <span class="color-square" style="background-color:#56ABE4;" onclick='handle(this, "1", "bxr0dr")'></span>
-                                                    <span class="color-square" style="background-color:#E40404;" onclick='handle(this, "2", "bxr0dr")'></span>
-                                                    <span class="color-square" style="background-color:#139EBA;" onclick='handle(this, "3", "bxr0dr")'></span>
-                                                    <span class="color-square" style="background-color:#207FDB;" onclick='handle(this, "4", "bxr0dr")'></span>
-                                                    <span class="color-square" style="background-color:#E07F21;" onclick='handle(this, "5", "bxr0dr")'></span>
-                                                    <span class="color-square" style="background-color:#00AE68;" onclick='handle(this, "6", "bxr0dr")'></span>
-                                                    <span class="color-square" style="background-color:#FF6600;" onclick='handle(this, "7", "bxr0dr")'></span>
-                                            </div>
-                </div> -->
+                        <span class="color-square" style="background-color:#EEB92A;" onclick='handle(this, "0", "bxr0dr")'></span>
+                        <span class="color-square" style="background-color:#56ABE4;" onclick='handle(this, "1", "bxr0dr")'></span>
+                        <span class="color-square" style="background-color:#E40404;" onclick='handle(this, "2", "bxr0dr")'></span>
+                        <span class="color-square" style="background-color:#139EBA;" onclick='handle(this, "3", "bxr0dr")'></span>
+                        <span class="color-square" style="background-color:#207FDB;" onclick='handle(this, "4", "bxr0dr")'></span>
+                        <span class="color-square" style="background-color:#E07F21;" onclick='handle(this, "5", "bxr0dr")'></span>
+                        <span class="color-square" style="background-color:#00AE68;" onclick='handle(this, "6", "bxr0dr")'></span>
+                        <span class="color-square" style="background-color:#FF6600;" onclick='handle(this, "7", "bxr0dr")'></span>
+                    </div>
+                </div>
             </div>
             <div class="preview-containt-b">
                 <div class="web_view_box_b" style="width:100%;">
@@ -49,9 +47,8 @@
         </div>
 
         <script src="./js/jquery.min.js"></script>
-        <script type="text/javascript">
+        <script>
             $(function () {
-                //多屏设定
                 $('.preview_link span.preview_link_span').click(function () {
                     $(this).siblings().removeClass('cur');
                     $(this).addClass('cur');
@@ -64,7 +61,6 @@
                 } else {
                     top_h = $('.preview-top-b').outerHeight(true);
                 }
-                //去掉外围滚动条
                 var iframeHeight = $(document).outerHeight(true) - top_h - 2;
                 $("#iframe").height(iframeHeight);
             });
