@@ -89,28 +89,10 @@ PageClick = function (pageclickednumber) {
 
 
 
-// 动画加载
-var advisoryleft = document.getElementById('advisoryleft');
-var advisorycenter = document.getElementById('advisorycenter');
-var advisoryright = document.getElementById('advisoryright');
-var wrap = document.getElementById('wrap');
 
-var wrapscrolltop = document.getElementById("wrap").clientHeight
 
-addEventListener('scroll', function () {
-    var scrollTop = document.documentElement.scrollTop;
 
-    if (scrollTop > wrapscrolltop - 300) {
-        advisoryleft.style.animationName = 'advisoryleft';
-        advisoryleft.style.animationDuration = '1s';
 
-        advisoryright.style.animationName = 'advisoryright';
-        advisoryright.style.animationDuration = '1s';
-
-        advisorycenter.style.animationName = 'advisorycenter';
-        advisorycenter.style.animationDuration = '1s';
-    }
-})
 
 
 // 返回顶部
@@ -120,48 +102,83 @@ $("#test").click(function () {
 
 
 // ajax 请求获取数据
-function picShow(){
-    var str = '';
-    $.ajax({
-        url:'./js/data.json',
-        type:'get',
-        dataType:'json',
-        success:function(data){
-            console.log('success')
-           
-            $.each(data.message,function(i, item){ 
-                console.log(item.id)
-                str += `
-                <li class="wrap-item">
-                <div class="pic-wrap">
-                    <div class="pic">
-                        <div class="pic-son">
-                            <a href=" ` + item.link + `" target="_blank"><img src=" ` + item.pic+ `" alt="缩略图"></a>
+var str = '';
+$.ajax({
+    url:'./js/data.json',
+    type:'get',
+    dataType:'json',
+    success:function(data){
+        console.log('ajax请求数据成功')
+        $.each(data.message,function(i, item){ 
+            console.log(item) // 返回json数据
+            str += `
+            <li class="wrap-item">
+            <div class="pic-wrap">
+                <div class="pic">
+                    <div class="pic-son">
+                        <a href=" ` + item.link + `" target="_blank"><img src=" ` + item.pic+ `" alt="缩略图"></a>
 
-                        </div>
-                    </div>
-
-                    <div class="pic-main">
-                        <div class="pic-title">
-                            <span>编号：</span>
-                            <span> ` + item.title + ` </span>
-                        </div>
-                        <div class="pic-guide"> `
-                            + item.guide +
-                        ` </div>
-                        <div class="pic-link" id="picLink">
-                            <a href=" ` + item.link + ` " target="_blank">预览</a>
-                        </div>
                     </div>
                 </div>
-            </li> 
-                `
-            })
-            $("#tab").html(str)
-        },
-        error: function() {
-            console.log('error')
+
+                <div class="pic-main">
+                    <div class="pic-title">
+                        <span>编号：</span>
+                        <span> ` + item.title + ` </span>
+                    </div>
+                    <div class="pic-guide"> `
+                        + item.guide +
+                    ` </div>
+                    <div class="pic-link" id="picLink">
+                        <a href=" ` + item.link + ` " target="_blank">预览</a>
+                    </div>
+                </div>
+            </div>
+        </li> 
+            `
+        })
+        $("#list").html(str)
+        // 数据字段被渲染到list中
+    },
+    error: function() {
+        console.log('请求失败')
+    }
+})
+
+// 动画开始加载部分
+var advisoryleft = document.getElementById('advisoryleft');
+var advisorycenter = document.getElementById('advisorycenter');
+var advisoryright = document.getElementById('advisoryright');
+var wrap = document.getElementById('wrap');
+
+window.onload = function () {
+    function getTop(element) {
+        var realTop = element.offsetTop;
+        var parent = element.offsetParent;
+        while (parent !== null) {
+            realTop += parent.offsetTop;
+            parent = parent.offsetParent;
+        }
+        return realTop;
+    }
+    var footer = document.getElementById("footer");
+    var distanceFromFooterToTop = getTop(footer);
+    console.log(distanceFromFooterToTop)
+    // footer到顶部距离，再减去半屏
+    // 判断页面到达这个高度时开始加载动画
+
+    addEventListener('scroll', function () {
+        var scrollTop = document.documentElement.scrollTop;
+        // console.log(scrollTop)
+        if (scrollTop > distanceFromFooterToTop - 600) {
+            advisoryleft.style.animationName = 'advisoryleft';
+            advisoryleft.style.animationDuration = '1s';
+    
+            advisoryright.style.animationName = 'advisoryright';
+            advisoryright.style.animationDuration = '1s';
+    
+            advisorycenter.style.animationName = 'advisorycenter';
+            advisorycenter.style.animationDuration = '1s';
         }
     })
 }
-picShow();

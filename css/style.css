@@ -20,9 +20,7 @@ ol,ul,li {
 }
 
 
-
 /* 头部logo */
-
 .header {
     background: #ff6700;
     width: 100%;
@@ -79,7 +77,6 @@ ol,ul,li {
 }
 
 .category-container-main {
-    /* margin: 12px 0; */
     border-bottom: 1px solid rgb(211, 208, 208);
 }
 
@@ -293,7 +290,6 @@ ol,ul,li {
     width: 450px;
     margin: 0 auto;
     height: 242px;
-    /* background: #fff; */
     display: flex;
     flex: 1;
     justify-content: space-around;
@@ -303,7 +299,6 @@ ol,ul,li {
     width: 30%;
     text-align: left;
     margin-top: 70px;
-    /* background: #444; */
 }
 
 .advisory-title {
