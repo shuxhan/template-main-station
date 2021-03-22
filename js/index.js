@@ -170,3 +170,21 @@ window.onload = function () {
 
 
 
+var slidetel = document.getElementsByClassName('slide-tel')[0];
+var slidetelspan = document.getElementsByClassName('slide-tel-span')[0];
+var slideqq = document.getElementsByClassName('slide-qq')[0];
+var slideqqspan = document.getElementsByClassName('slide-qq-span')[0];
+
+slidetel.onmouseover = function() {
+    slidetelspan.style.backgroundColor = '#ff6700';
+}
+slidetel.onmouseout = function() {
+    slidetelspan.style.backgroundColor = '#333';
+}
+
+slideqq.onmouseover = function() {
+    slideqqspan.style.backgroundColor = '#ff6700';
+}
+slideqq.onmouseout = function() {
+    slideqqspan.style.backgroundColor = '#333';
+}
