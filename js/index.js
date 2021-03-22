@@ -1,5 +1,3 @@
-
-
 (function ($) {
     $.fn.pager = function (options) {
         var opts = $.extend({}, $.fn.pager.defaults, options);
@@ -101,7 +99,7 @@ $.ajax({
         console.log('数据请求成功')
         $.each(data.message, function (i, item) {
             console.log(item)
-            p = "<li class='wrap-item'>"
+            list = "<li class='wrap-item'>"
                     + "<div class='pic-wrap'>"
                         + "<div class='pic'>"
                             + "<div class='pic-son-wrap'>"
@@ -124,7 +122,7 @@ $.ajax({
                         + "</div>"
                     + "</div>"
                 + "</li>"
-            str += p;
+            str += list;
         })
 
         $("#list").html(str);
@@ -137,7 +135,6 @@ $.ajax({
 var advisoryleft = document.getElementById('advisoryleft');
 var advisorycenter = document.getElementById('advisorycenter');
 var advisoryright = document.getElementById('advisoryright');
-var wrap = document.getElementById('wrap');
 
 window.onload = function () {
     function getTop(element) {
@@ -151,7 +148,6 @@ window.onload = function () {
     }
     var footer = document.getElementById("footer");
     var distanceFromFooterToTop = getTop(footer);
-    console.log(distanceFromFooterToTop)
 
     addEventListener('scroll', function () {
         var scrollTop = document.documentElement.scrollTop;
