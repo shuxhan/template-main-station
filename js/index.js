@@ -38,7 +38,6 @@
         }
 
         $pager.append(renderButton('下一页', pagenumber, pagecount, buttonClickCallback)).append(renderButton('尾页', pagenumber, pagecount, buttonClickCallback));
-
         return $pager;
     }
     function renderButton(buttonLabel, pagenumber, pagecount, buttonClickCallback) {
@@ -88,8 +87,6 @@ PageClick = function (pageclickednumber) {
 }
 
 
-
-
 // 返回顶部
 $("#test").click(function () {
     $('html,body').animate({ 'scrollTop': '0' }, 500)
@@ -98,46 +95,45 @@ $("#test").click(function () {
 // ajax 请求获取数据
 var str = '';
 $.ajax({
-    url:'./js/data.json',
-    type:'get',
-    dataType:'json',
-    success:function(data){
+    url: './js/data.json',
+    type: 'get',
+    dataType: 'json',
+    async: false,   // 将js设置为同步执行，先将ajax渲染完毕，才会执行下面的js事件
+    success: function (data) {
         console.log('数据请求成功')
-        $.each(data.message,function(i, item){ 
-            console.log(item) // 返回json数据
+        $.each(data.message, function (i, item) {
+            console.log(item) // 控制台返回json数据
             p = "<li class='wrap-item'>"
-                    +"<div class='pic-wrap'>"
-                        +"<div class='pic'>"
-                            +"<div class='pic-son-wrap'>"
-                                +"<div class='pic-son'>"
-                                    +"<a href='"+item.link+"'>"
-                                        +"<img src='"+item.pic+"' alt='缩略图'>"
-                                    +"</a>"
-                                +"</div>"
-                            +"</div>"
-                            +"<div class='pic-main'>"
-                                +"<div class='pic-title'>"
-                                    +"<span>"+"编号："+"</span>"+"<span>"+item.title+"</span>"
-                                +"</div>"
-                                +"<div class='pic-guide'>"
-                                    +item.guide
-                                +"</div>"
-                                +"<div class='pic-link' id='picLink'>"
-                                    +"<a href='"+item.link+"'>"
-                                        +"预览"
-                                    +"</a>"
-                                +"</div>"
-                            +"</div>"
-                        +"</div>"
-                        +"</div>"
-                    +"</li>"
+                    + "<div class='pic-wrap'>"
+                        + "<div class='pic'>"
+                            + "<div class='pic-son-wrap'>"
+                                + "<div class='pic-son'>"
+                                    + "<a target='_blank' href='" + item.link + "'>"
+                                        + "<img src='" + item.pic + "' alt='缩略图'>"
+                                    + "</a>"
+                                + "</div>"
+                            + "</div>"
+                            + "<div class='pic-main'>"
+                                + "<div class='pic-title'>"
+                                    + "<span>" + "编号：" + "</span>" 
+                                    + "<span>" + item.title + "</span>"
+                                + "</div>"
+                                + "<div class='pic-guide'>"
+                                    + item.guide
+                                + "</div>"
+                                + "<div class='pic-link' id='picLink'>"
+                                    + "<a target='_blank' href='" + item.link + "'>" + "预览" + "</a>"
+                                + "</div>"
+                            + "</div>"
+                        + "</div>"
+                    + "</div>"
+                + "</li>"
             str += p;
         })
 
-        $("#list").html(str)
-        // 数据字段被渲染到list中
+        $("#list").html(str)    // 数据字段被渲染到list中 
     },
-    error: function() {
+    error: function () {
         console.log('数据请求失败')
     }
 })
@@ -160,21 +156,21 @@ window.onload = function () {
     }
     var footer = document.getElementById("footer");
     var distanceFromFooterToTop = getTop(footer);
-    // console.log(distanceFromFooterToTop)
-    
+    console.log(distanceFromFooterToTop)
+
+
     // footer到顶部距离，再减去半屏
     // 判断页面到达这个高度时开始加载动画
-
     addEventListener('scroll', function () {
         var scrollTop = document.documentElement.scrollTop;
         // console.log(scrollTop)
         if (scrollTop > distanceFromFooterToTop - 600) {
             advisoryleft.style.animationName = 'advisoryleft';
             advisoryleft.style.animationDuration = '1s';
-    
+
             advisoryright.style.animationName = 'advisoryright';
             advisoryright.style.animationDuration = '1s';
-    
+
             advisorycenter.style.animationName = 'advisorycenter';
             advisorycenter.style.animationDuration = '1s';
         }
