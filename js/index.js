@@ -1,4 +1,5 @@
-// 分页
+
+
 (function ($) {
     $.fn.pager = function (options) {
         var opts = $.extend({}, $.fn.pager.defaults, options);
@@ -86,23 +87,20 @@ PageClick = function (pageclickednumber) {
     $("#result").html("Clicked Page " + pageclickednumber);
 }
 
-
-// 返回顶部
 $("#test").click(function () {
     $('html,body').animate({ 'scrollTop': '0' }, 500)
 })
 
-// ajax 请求获取数据
 var str = '';
 $.ajax({
     url: './js/data.json',
     type: 'get',
     dataType: 'json',
-    async: false,   // 将js设置为同步执行，先将ajax渲染完毕，才会执行下面的js事件
+    async: false,   // 同步
     success: function (data) {
         console.log('数据请求成功')
         $.each(data.message, function (i, item) {
-            console.log(item) // 控制台返回json数据
+            console.log(item)
             p = "<li class='wrap-item'>"
                     + "<div class='pic-wrap'>"
                         + "<div class='pic'>"
@@ -118,9 +116,7 @@ $.ajax({
                                     + "<span>" + "编号：" + "</span>" 
                                     + "<span>" + item.title + "</span>"
                                 + "</div>"
-                                + "<div class='pic-guide'>"
-                                    + item.guide
-                                + "</div>"
+                                + "<div class='pic-guide'>" + item.guide + "</div>"
                                 + "<div class='pic-link' id='picLink'>"
                                     + "<a target='_blank' href='" + item.link + "'>" + "预览" + "</a>"
                                 + "</div>"
@@ -131,14 +127,13 @@ $.ajax({
             str += p;
         })
 
-        $("#list").html(str)    // 数据字段被渲染到list中 
+        $("#list").html(str);
     },
     error: function () {
         console.log('数据请求失败')
     }
 })
 
-// 动画开始加载部分
 var advisoryleft = document.getElementById('advisoryleft');
 var advisorycenter = document.getElementById('advisorycenter');
 var advisoryright = document.getElementById('advisoryright');
@@ -158,12 +153,8 @@ window.onload = function () {
     var distanceFromFooterToTop = getTop(footer);
     console.log(distanceFromFooterToTop)
 
-
-    // footer到顶部距离，再减去半屏
-    // 判断页面到达这个高度时开始加载动画
     addEventListener('scroll', function () {
         var scrollTop = document.documentElement.scrollTop;
-        // console.log(scrollTop)
         if (scrollTop > distanceFromFooterToTop - 600) {
             advisoryleft.style.animationName = 'advisoryleft';
             advisoryleft.style.animationDuration = '1s';
@@ -176,3 +167,6 @@ window.onload = function () {
         }
     })
 }
+
+
+
