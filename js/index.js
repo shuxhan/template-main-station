@@ -107,6 +107,11 @@ $.ajax({
                                     + "<a target='_blank' href='" + item.link + "'>"
                                         + "<img src='" + item.pic + "' alt='缩略图'>"
                                     + "</a>"
+                                    + "<span class='after'>"
+                                    + "</span>"
+                                    + "<span class='before'> "
+                                        + "<img src='" + item.shadow + "' alt='二维码'>"
+                                    + "</span>"
                                 + "</div>"
                             + "</div>"
                             + "<div class='pic-main'>"
@@ -135,8 +140,34 @@ $.ajax({
 var advisoryleft = document.getElementById('advisoryleft');
 var advisorycenter = document.getElementById('advisorycenter');
 var advisoryright = document.getElementById('advisoryright');
+var body = document.getElementsByTagName('body')[0];
+var bannerMain1 = document.getElementById('bannerMain1');
+var bannerMain2 = document.getElementById('bannerMain2');
+var bannerMain3 = document.getElementById('bannerMain3');
+var pageTitle1 = document.getElementById('pageTitle1');
+var pageTitle2 = document.getElementById('pageTitle2');
 
-window.onload = function () {
+body.onload = function () {
+    bannerMain1.style.animationName = 'bannerup';
+    bannerMain1.style.animationDuration = '1.2s';
+    bannerMain1.style.opacity = '1';
+
+    bannerMain2.style.animationName = 'bannerup';
+    bannerMain2.style.animationDuration = '1.4s';
+    bannerMain2.style.opacity = '1';
+
+    bannerMain3.style.animationName = 'bannerscale';
+    bannerMain3.style.animationDuration = '1s';
+    bannerMain3.style.opacity = '1';
+
+    pageTitle1.style.animationName = 'bannerup';
+    pageTitle1.style.animationDuration = '1s';
+    pageTitle1.style.opacity = '1';
+
+    pageTitle2.style.animationName = 'pagetitle';
+    pageTitle2.style.animationDuration = '1s';
+    pageTitle2.style.opacity = '1';
+
     function getTop(element) {
         var realTop = element.offsetTop;
         var parent = element.offsetParent;
@@ -161,6 +192,18 @@ window.onload = function () {
             advisorycenter.style.animationName = 'advisorycenter';
             advisorycenter.style.animationDuration = '1s';
         }
+
+        
+    })
+    var headerLogo = document.getElementById('headerLogo');
+    addEventListener('scroll', function () {
+        var scrollTop = document.documentElement.scrollTop;
+        if(scrollTop > 100) {
+            headerLogo.classList.add('etc');
+        } else {
+            headerLogo.classList.remove('etc')
+        }
+      
     })
 }
 
@@ -170,6 +213,7 @@ var slidetel = document.getElementsByClassName('slide-tel')[0];
 var slidetelspan = document.getElementsByClassName('slide-tel-span')[0];
 var slideqq = document.getElementsByClassName('slide-qq')[0];
 var slideqqspan = document.getElementsByClassName('slide-qq-span')[0];
+
 
 slidetel.onmouseover = function() {
     slidetelspan.style.backgroundColor = '#ff6700';
@@ -184,3 +228,4 @@ slideqq.onmouseover = function() {
 slideqq.onmouseout = function() {
     slideqqspan.style.backgroundColor = '#333';
 }
+
